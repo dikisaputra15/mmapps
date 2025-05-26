@@ -37,12 +37,12 @@ class StatistikController extends Controller
             // $no = 1;
             // foreach ($icats as $icat) {
             //     echo $no++ . " " . $icat->ID . " " . $icat->id . " " . $icat->post_title . "<br>";
-            // }    
+            // }
 
         if($icats->isNotEmpty()){
             foreach ($icats as $icat){
                 $loc = $icat->map_coords_1 . "," . " " . $icat->map_coords_2;
-        
+
                 $category = [
                     'id_listing' => $icat->id,
                     'post_id_cat' => $icat->ID,
@@ -68,6 +68,7 @@ class StatistikController extends Controller
                     'number_of_incident' => $icat->number_of_incident,
                     'number_of_injuries' => $icat->number_of_injuries,
                     'number_of_fatalities' => $icat->number_of_fatalities,
+                    'article_link' => NULL,
                     'additional_info' => $icat->additional_info,
                     'date_posting' => $icat->post_date
                 ];
