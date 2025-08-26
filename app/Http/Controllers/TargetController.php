@@ -45,6 +45,8 @@ class TargetController extends Controller
                     $viol = 'Military - Navy SF';
                 }elseif($violence->meta_value == 61){
                     $viol = 'Religious Group';
+                }elseif($violence->meta_value == 3){
+                    $viol = 'Central Government';
                 }elseif($violence->meta_value == 36){
                     $viol = 'Military - Special Operations Command (Koopsus)';
                 }elseif($violence->meta_value == 38){
