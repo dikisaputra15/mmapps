@@ -22,6 +22,15 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\Tanggal::class,
         \App\Console\Commands\Violence::class,
         \App\Console\Commands\Articlelink::class,
+        \App\Console\Commands\Business::class,
+        \App\Console\Commands\Civilian::class,
+        \App\Console\Commands\Communnity::class,
+        \App\Console\Commands\Goverment::class,
+        \App\Console\Commands\Military::class,
+        \App\Console\Commands\Police::class,
+        \App\Console\Commands\Separatist::class,
+        \App\Console\Commands\Terorist::class,
+        \App\Console\Commands\Vested::class,
     ];
     /**
      * Define the application's command schedule.
@@ -55,6 +64,24 @@ class Kernel extends ConsoleKernel
         $schedule->command('task:runviolence')->everyFifteenMinutes();
 
         $schedule->command('task:runarticlelink')->everyFifteenMinutes();
+
+        $schedule->command('task:runbusiness')->everyFifteenMinutes();
+
+        $schedule->command('task:runcivilian')->everyFifteenMinutes();
+
+        $schedule->command('task:runcommunity')->everyFifteenMinutes();
+
+        $schedule->command('task:rungoverment')->everyFifteenMinutes();
+
+        $schedule->command('task:runmilitary')->everyFifteenMinutes();
+
+        $schedule->command('task:runpolice')->everyFifteenMinutes();
+
+        $schedule->command('task:runseparatist')->everyFifteenMinutes();
+
+        $schedule->command('task:runterorist')->everyFifteenMinutes();
+
+        $schedule->command('task:runvested')->everyFifteenMinutes();
     }
 
     /**

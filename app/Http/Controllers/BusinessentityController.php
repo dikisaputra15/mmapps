@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class ExplosivetypeController extends Controller
+class BusinessentityController extends Controller
 {
     public function index()
     {
@@ -22,7 +22,7 @@ class ExplosivetypeController extends Controller
             ->select('wp_postmeta.post_id', 'wp_postmeta.meta_value', 'wp_posts.post_date', 'wp_w2gm_locations_relationships.id')
             ->whereDate(DB::raw('DATE(wp_posts.post_date)'), $tgl_now)
             // ->whereBetween(DB::raw('DATE(wp_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
-            ->where('wp_postmeta.meta_key', '_content_field_166')
+            ->where('wp_postmeta.meta_key', '_content_field_177')
             ->get();
 
         //    $no = 1;
@@ -33,41 +33,29 @@ class ExplosivetypeController extends Controller
 
         if($violences->isNotEmpty()){
             foreach($violences as $violence){
-                if($violence->meta_value == 7){
-                    $viol = 'Air Strike';
-                }elseif($violence->meta_value == 2){
-                    $viol = 'Fish Bomb';
-                }elseif($violence->meta_value == 11){
-                    $viol = 'Landmine';
-                }elseif($violence->meta_value == 9){
-                    $viol = 'Artillery';
-                }elseif($violence->meta_value == 14){
-                    $viol = 'Grenade';
-                }elseif($violence->meta_value == 10){
-                    $viol = 'MANPAD';
-                }elseif($violence->meta_value == 12){
-                    $viol = 'Car Bomb/VBIED';
-                }elseif($violence->meta_value == 13){
-                    $viol = 'Grenade Launcher';
+                if($violence->meta_value == 6){
+                    $viol = 'Country State-owned Enterprise (SOE)';
                 }elseif($violence->meta_value == 5){
-                    $viol = 'Military-grade Explosive';
-                }elseif($violence->meta_value == 4){
-                    $viol = 'Commercial Explosive';
+                    $viol = 'Multinational Corporation';
                 }elseif($violence->meta_value == 1){
-                    $viol = 'Homemade Explosive';
-                }elseif($violence->meta_value == 8){
-                    $viol = 'Naval Bombardment';
+                    $viol = 'Small or Medium Business/Firm';
+                }elseif($violence->meta_value == 7){
+                    $viol = 'Foreign Business/Enterprise';
                 }elseif($violence->meta_value == 3){
-                    $viol = 'Firebomb';
-                }elseif($violence->meta_value == 6){
-                    $viol = 'Improvised Explosive Device (IEDs)';
+                    $viol = 'National Conglomerate';
+                }elseif($violence->meta_value == 8){
+                    $viol = 'Other';
+                }elseif($violence->meta_value == 2){
+                    $viol = 'Large Business/Firm';
+                }elseif($violence->meta_value == 4){
+                    $viol = 'National Conglomerate - Multinational Corporation';
                 }else{
                     $viol = NULL;
                 }
                 DB::table('indostatistiknews')
                     ->where('id_listing', $violence->id)
                     ->update([
-                        'explosive_type' => $viol
+                        'actor_type' => $viol
                     ]);
             }
 

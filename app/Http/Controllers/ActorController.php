@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 class ActorController extends Controller
 {
-    public function index()
+     public function index()
     {
         // ini_set('max_execution_time', 3600);
 
@@ -16,40 +16,61 @@ class ActorController extends Controller
         $tgl_now = $tgl->format('Y-m-d');
         // $tgl_coba = ['2024-02-01', '2024-02-10'];
 
-        $actors = DB::table('wp_w2gm_locations_relationships')
-        ->join('wp_term_relationships', 'wp_term_relationships.object_id', '=', 'wp_w2gm_locations_relationships.post_id')
-        ->join('wp_term_taxonomy', 'wp_term_taxonomy.term_taxonomy_id', '=', 'wp_term_relationships.term_taxonomy_id')
-        ->join('wp_terms', 'wp_terms.term_id', '=', 'wp_term_taxonomy.term_id')
-        ->join('wp_posts', 'wp_posts.ID', '=', 'wp_w2gm_locations_relationships.post_id')
-        ->select('wp_w2gm_locations_relationships.id', 'wp_terms.name')
-        ->whereDate(DB::raw('DATE(wp_posts.post_date)'), $tgl_now)
-        // ->whereBetween(DB::raw('DATE(wp_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
-        ->where(function($query) {
-            $query->Where('wp_terms.term_id', 16152)
-                ->orWhere('wp_terms.term_id', 16153)
-                ->orWhere('wp_terms.term_id', 16150)
-                ->orWhere('wp_terms.term_id', 16170)
-                ->orWhere('wp_terms.term_id', 16151)
-                ->orWhere('wp_terms.term_id', 16156)
-                ->orWhere('wp_terms.term_id', 16157)
-                ->orWhere('wp_terms.term_id', 16171)
-                ->orWhere('wp_terms.term_id', 17134)
-                ->orWhere('wp_terms.term_id', 18128)
-                ->orWhere('wp_terms.term_id', 18137)
-                ->orWhere('wp_terms.term_id', 18119)
-                ->orWhere('wp_terms.term_id', 18124)
-                ->orWhere('wp_terms.term_id', 18127);
-            })
-        ->get();
+        $violences = DB::table('wp_postmeta')
+            ->join('wp_posts', 'wp_posts.ID', '=', 'wp_postmeta.post_id')
+            ->join('wp_w2gm_locations_relationships', 'wp_w2gm_locations_relationships.post_id', '=', 'wp_postmeta.post_id')
+            ->select('wp_postmeta.post_id', 'wp_postmeta.meta_value', 'wp_posts.post_date', 'wp_w2gm_locations_relationships.id')
+            ->whereDate(DB::raw('DATE(wp_posts.post_date)'), $tgl_now)
+            // ->whereBetween(DB::raw('DATE(wp_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
+            ->where('wp_postmeta.meta_key', '_content_field_152')
+            ->get();
 
-        if($actors->isNotEmpty()){
-            foreach ($actors as $actor){
+        //    $no = 1;
+        //     foreach ($tanggals as $tanggal) {
+        //         echo $no++ . " " . $tanggal->id . "<br>";
+        //     }
+
+
+        if($violences->isNotEmpty()){
+            foreach($violences as $violence){
+                if($violence->meta_value == 32){
+                    $viol = 'Business Entity';
+                }elseif($violence->meta_value == 27){
+                    $viol = 'Foreign Government';
+                }elseif($violence->meta_value == 6){
+                    $viol = 'Terrorist Group';
+                }elseif($violence->meta_value == 3){
+                    $viol = 'Central Government';
+                }elseif($violence->meta_value == 4){
+                    $viol = 'Government Security Agency';
+                }elseif($violence->meta_value == 9){
+                    $viol = 'Vested Interest/Stakeholder Group';
+                }elseif($violence->meta_value == 7){
+                    $viol = 'Civilian';
+                }elseif($violence->meta_value == 1){
+                    $viol = 'Local Government';
+                }elseif($violence->meta_value == 20){
+                    $viol = 'Unknown/Unclaimed Responsibility';
+                }elseif($violence->meta_value == 31){
+                    $viol = 'Community Group';
+                }elseif($violence->meta_value == 2){
+                    $viol = 'Provincial Government';
+                }elseif($violence->meta_value == 19){
+                    $viol = 'Other';
+                }elseif($violence->meta_value == 8){
+                    $viol = 'Crime Group';
+                }elseif($violence->meta_value == 5){
+                    $viol = 'Separatist Group';
+                }else{
+                    $viol = NULL;
+                }
                 DB::table('indostatistiknews')
-                    ->where('id_listing', $actor->id)
+                    ->where('id_listing', $violence->id)
                     ->update([
-                        'actor' => $actor->name
+                        'actor' => $viol
                     ]);
             }
+
             echo "sukses";
         }else{
             echo "empty";

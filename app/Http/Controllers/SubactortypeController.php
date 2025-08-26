@@ -11,50 +11,45 @@ class SubactortypeController extends Controller
     public function index()
     {
         // ini_set('max_execution_time', 3600);
+        // sub actor intellegence type
 
         $tgl = Carbon::now();
         $tgl_now = $tgl->format('Y-m-d');
         // $tgl_coba = ['2024-02-01', '2024-02-10'];
 
-        $subactortypes = DB::table('wp_w2gm_locations_relationships')
-        ->join('wp_term_relationships', 'wp_term_relationships.object_id', '=', 'wp_w2gm_locations_relationships.post_id')
-        ->join('wp_term_taxonomy', 'wp_term_taxonomy.term_taxonomy_id', '=', 'wp_term_relationships.term_taxonomy_id')
-        ->join('wp_terms', 'wp_terms.term_id', '=', 'wp_term_taxonomy.term_id')
-        ->join('wp_posts', 'wp_posts.ID', '=', 'wp_w2gm_locations_relationships.post_id')
-        ->select('wp_w2gm_locations_relationships.id', 'wp_terms.name')
-        ->whereDate(DB::raw('DATE(wp_posts.post_date)'), $tgl_now)
-        // ->whereBetween(DB::raw('DATE(wp_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
-        ->where(function($query) {
-            $query->Where('wp_terms.term_id', 16737)
-                ->orWhere('wp_terms.term_id', 16736)
-                ->orWhere('wp_terms.term_id', 16739)
-                ->orWhere('wp_terms.term_id', 16738)
-                ->orWhere('wp_terms.term_id', 16724)
-                ->orWhere('wp_terms.term_id', 16725)
-                ->orWhere('wp_terms.term_id', 16726)
-                ->orWhere('wp_terms.term_id', 16727)
-                ->orWhere('wp_terms.term_id', 16728)
-                ->orWhere('wp_terms.term_id', 16729)
-                ->orWhere('wp_terms.term_id', 16730)
-                ->orWhere('wp_terms.term_id', 18115)
-                ->orWhere('wp_terms.term_id', 18116)
-                ->orWhere('wp_terms.term_id', 18117)
-                ->orWhere('wp_terms.term_id', 16731)
-                ->orWhere('wp_terms.term_id', 16732)
-                ->orWhere('wp_terms.term_id', 16733)
-                ->orWhere('wp_terms.term_id', 16734)
-                ->orWhere('wp_terms.term_id', 16952);
-            })
-        ->get();
+        $violences = DB::table('wp_postmeta')
+            ->join('wp_posts', 'wp_posts.ID', '=', 'wp_postmeta.post_id')
+            ->join('wp_w2gm_locations_relationships', 'wp_w2gm_locations_relationships.post_id', '=', 'wp_postmeta.post_id')
+            ->select('wp_postmeta.post_id', 'wp_postmeta.meta_value', 'wp_posts.post_date', 'wp_w2gm_locations_relationships.id')
+            ->whereDate(DB::raw('DATE(wp_posts.post_date)'), $tgl_now)
+            // ->whereBetween(DB::raw('DATE(wp_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
+            ->where('wp_postmeta.meta_key', '_content_field_171')
+            ->get();
 
-        if($subactortypes->isNotEmpty()){
-            foreach ($subactortypes as $subactortype){
+        //    $no = 1;
+        //     foreach ($tanggals as $tanggal) {
+        //         echo $no++ . " " . $tanggal->id . "<br>";
+        //     }
+
+
+        if($violences->isNotEmpty()){
+            foreach($violences as $violence){
+                if($violence->meta_value == 2){
+                    $viol = 'Military';
+                }elseif($violence->meta_value == 1){
+                    $viol = 'National';
+                }elseif($violence->meta_value == 3){
+                    $viol = 'Police';
+                }else{
+                    $viol = NULL;
+                }
                 DB::table('indostatistiknews')
-                    ->where('id_listing', $subactortype->id)
+                    ->where('id_listing', $violence->id)
                     ->update([
-                        'sub_actor_type' => $subactortype->name
+                        'sub_actor_type' => $viol
                     ]);
             }
+
             echo "sukses";
         }else{
             echo "empty";
