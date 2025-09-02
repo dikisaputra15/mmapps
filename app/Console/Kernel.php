@@ -31,6 +31,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\Separatist::class,
         \App\Console\Commands\Terorist::class,
         \App\Console\Commands\Vested::class,
+        \App\Console\Commands\Time::class,
     ];
     /**
      * Define the application's command schedule.
@@ -82,6 +83,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('task:runterorist')->everyFifteenMinutes();
 
         $schedule->command('task:runvested')->everyFifteenMinutes();
+
+        $schedule->command('task:runtime')->everyFifteenMinutes();
     }
 
     /**

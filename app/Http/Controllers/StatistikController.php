@@ -47,6 +47,7 @@ class StatistikController extends Controller
                     'id_listing' => $icat->id,
                     'post_id_cat' => $icat->ID,
                     'listing_date' => NULL,
+                    'time_incident' => NULL,
                     'post_title' => $icat->post_title,
                     'address' => $icat->address_line_1,
                     'regency_city' => $icat->lokasi_name,

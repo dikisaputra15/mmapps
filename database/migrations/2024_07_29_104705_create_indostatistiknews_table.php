@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('id_listing');
             $table->bigInteger('post_id_cat');
             $table->date('listing_date')->nullable();
+            $table->string('time_incident')->nullable();
             $table->string('post_title');
             $table->text('address');
             $table->string('regency_city');

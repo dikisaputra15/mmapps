@@ -40,3 +40,4 @@ Route::get('/police', [App\Http\Controllers\PolicetypeController::class, 'index'
 Route::get('/separatist', [App\Http\Controllers\SeparatistgroupController::class, 'index']);
 Route::get('/terorist', [App\Http\Controllers\TeroristgroupController::class, 'index']);
 Route::get('/vested', [App\Http\Controllers\VestedController::class, 'index']);
+Route::get('/time', [App\Http\Controllers\TimeController::class, 'index']);
