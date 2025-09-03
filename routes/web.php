@@ -41,3 +41,5 @@ Route::get('/separatist', [App\Http\Controllers\SeparatistgroupController::class
 Route::get('/terorist', [App\Http\Controllers\TeroristgroupController::class, 'index']);
 Route::get('/vested', [App\Http\Controllers\VestedController::class, 'index']);
 Route::get('/time', [App\Http\Controllers\TimeController::class, 'index']);
+Route::get('/numberprotest', [App\Http\Controllers\NumberprotestController::class, 'index']);
+Route::get('/issue', [App\Http\Controllers\IssueController::class, 'index']);

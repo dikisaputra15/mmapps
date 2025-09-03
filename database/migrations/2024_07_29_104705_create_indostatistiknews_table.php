@@ -39,6 +39,8 @@ return new class extends Migration
             $table->integer('number_of_injuries');
             $table->integer('number_of_fatalities');
             $table->text('article_link')->nullable();
+            $table->string('number_of_protest')->nullable();
+            $table->text('issue')->nullable();
             $table->text('additional_info');
             $table->date('date_posting');
         });
