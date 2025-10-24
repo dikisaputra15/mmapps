@@ -111,7 +111,8 @@ class SubincidenttypeController extends Controller
                         ->orWhere('wp_terms.term_id', 16204)
                         ->orWhere('wp_terms.term_id', 16205)
                         ->orWhere('wp_terms.term_id', 16206)
-                        ->orWhere('wp_terms.term_id', 18627);
+                        ->orWhere('wp_terms.term_id', 18627)
+                        ->orWhere('wp_terms.term_id', 23213);
             })
             ->get();
 
