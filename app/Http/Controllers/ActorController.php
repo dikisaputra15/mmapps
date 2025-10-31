@@ -36,11 +36,11 @@ class ActorController extends Controller
                 if($violence->meta_value == 32){
                     $viol = 'Business Entity';
                 }elseif($violence->meta_value == 27){
-                    $viol = 'Foreign Government';
+                    $viol = 'Foreign Government (A)';
                 }elseif($violence->meta_value == 6){
                     $viol = 'Terrorist Group';
                 }elseif($violence->meta_value == 3){
-                    $viol = 'Central Government';
+                    $viol = 'Central Government (A)';
                 }elseif($violence->meta_value == 4){
                     $viol = 'Government Security Agency';
                 }elseif($violence->meta_value == 9){
@@ -48,13 +48,13 @@ class ActorController extends Controller
                 }elseif($violence->meta_value == 7){
                     $viol = 'Civilian';
                 }elseif($violence->meta_value == 1){
-                    $viol = 'Local Government';
+                    $viol = 'Local Government (A)';
                 }elseif($violence->meta_value == 20){
                     $viol = 'Unknown/Unclaimed Responsibility';
                 }elseif($violence->meta_value == 31){
                     $viol = 'Community Group';
                 }elseif($violence->meta_value == 2){
-                    $viol = 'Provincial Government';
+                    $viol = 'Provincial Government (A)';
                 }elseif($violence->meta_value == 19){
                     $viol = 'Other';
                 }elseif($violence->meta_value == 8){

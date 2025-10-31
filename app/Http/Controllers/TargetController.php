@@ -38,7 +38,7 @@ class TargetController extends Controller
                 }elseif($violence->meta_value == 30){
                     $viol = 'Military - Navy';
                 }elseif($violence->meta_value == 2){
-                    $viol = 'Provincial Government';
+                    $viol = 'Provincial Government (T)';
                 }elseif($violence->meta_value == 50){
                     $viol = 'Asset/Site/Resource';
                 }elseif($violence->meta_value == 34){
@@ -46,7 +46,7 @@ class TargetController extends Controller
                 }elseif($violence->meta_value == 61){
                     $viol = 'Religious Group';
                 }elseif($violence->meta_value == 3){
-                    $viol = 'Central Government';
+                    $viol = 'Central Government (T)';
                 }elseif($violence->meta_value == 36){
                     $viol = 'Military - Special Operations Command (Koopsus)';
                 }elseif($violence->meta_value == 38){
@@ -76,7 +76,7 @@ class TargetController extends Controller
                 }elseif($violence->meta_value == 69){
                     $viol = 'Terrorist - Al Qaeda Indonesia (AQI)';
                 }elseif($violence->meta_value == 52){
-                    $viol = 'Foreign Government';
+                    $viol = 'Foreign Government (T)';
                 }elseif($violence->meta_value == 66){
                     $viol = 'National Conglomerate - Multinational Corporation';
                 }elseif($violence->meta_value == 70){
@@ -136,7 +136,7 @@ class TargetController extends Controller
                 }elseif($violence->meta_value == 74){
                     $viol = 'Terrorist - Laskar Jundullah';
                 }elseif($violence->meta_value == 1){
-                    $viol = 'Local Government';
+                    $viol = 'Local Government (T)';
                 }elseif($violence->meta_value == 24){
                     $viol = 'Police - Mobile Brigade (Brimob)';
                 }elseif($violence->meta_value == 43){
