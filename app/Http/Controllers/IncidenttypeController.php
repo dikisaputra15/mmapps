@@ -92,7 +92,8 @@ class IncidenttypeController extends Controller
                       ->orwhere('wp_terms.term_id', 23212)
                       ->orwhere('wp_terms.term_id', 23210)
                       ->orwhere('wp_terms.term_id', 23214)
-                      ->orwhere('wp_terms.term_id', 23211);
+                      ->orwhere('wp_terms.term_id', 23211)
+                      ->orwhere('wp_terms.term_id', 24804);
             })
             ->get();
 
