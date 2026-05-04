@@ -16,32 +16,32 @@ class SocialconflictController extends Controller
         $tgl_now = $tgl->format('Y-m-d');
         // $tgl_coba = ['2024-02-01', '2024-02-10'];
 
-        $sconflicts = DB::table('wp_w2gm_locations_relationships')
-            ->join('wp_term_relationships', 'wp_term_relationships.object_id', '=', 'wp_w2gm_locations_relationships.post_id')
-            ->join('wp_term_taxonomy', 'wp_term_taxonomy.term_taxonomy_id', '=', 'wp_term_relationships.term_taxonomy_id')
-            ->join('wp_terms', 'wp_terms.term_id', '=', 'wp_term_taxonomy.term_id')
-            ->join('wp_posts', 'wp_posts.ID', '=', 'wp_w2gm_locations_relationships.post_id')
-            ->select('wp_w2gm_locations_relationships.id', 'wp_terms.name')
-            ->whereDate(DB::raw('DATE(wp_posts.post_date)'), $tgl_now)
-            // ->whereBetween(DB::raw('DATE(wp_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
+        $sconflicts = DB::table('hk673_w2gm_locations_relationships')
+            ->join('hk673_term_relationships', 'hk673_term_relationships.object_id', '=', 'hk673_w2gm_locations_relationships.post_id')
+            ->join('hk673_term_taxonomy', 'hk673_term_taxonomy.term_taxonomy_id', '=', 'hk673_term_relationships.term_taxonomy_id')
+            ->join('hk673_terms', 'hk673_terms.term_id', '=', 'hk673_term_taxonomy.term_id')
+            ->join('hk673_posts', 'hk673_posts.ID', '=', 'hk673_w2gm_locations_relationships.post_id')
+            ->select('hk673_w2gm_locations_relationships.id', 'hk673_terms.name')
+            ->whereDate(DB::raw('DATE(hk673_posts.post_date)'), $tgl_now)
+            // ->whereBetween(DB::raw('DATE(hk673_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
             ->where(function($query) {
-                $query->where('wp_terms.term_id', 18088)
-                        ->orWhere('wp_terms.term_id', 18089)
-                        ->orWhere('wp_terms.term_id', 18090)
-                        ->orWhere('wp_terms.term_id', 18091)
-                        ->orWhere('wp_terms.term_id', 18092)
-                        ->orwhere('wp_terms.term_id', 18082)
-                        ->orwhere('wp_terms.term_id', 18629)
-                        ->orwhere('wp_terms.term_id', 18630)
-                        ->orwhere('wp_terms.term_id', 18086)
-                        ->orwhere('wp_terms.term_id', 18083)
-                        ->orwhere('wp_terms.term_id', 18631);
+                $query->where('hk673_terms.term_id', 1963)
+                        ->orWhere('hk673_terms.term_id', 1964)
+                        ->orWhere('hk673_terms.term_id', 1965)
+                        ->orWhere('hk673_terms.term_id', 1966)
+                        ->orWhere('hk673_terms.term_id', 1967)
+                        ->orWhere('hk673_terms.term_id', 1968)
+                        ->orWhere('hk673_terms.term_id', 1969)
+                        ->orWhere('hk673_terms.term_id', 1970)
+                        ->orWhere('hk673_terms.term_id', 1971)
+                        ->orWhere('hk673_terms.term_id', 1973)
+                        ->orWhere('hk673_terms.term_id', 1972);
                      })
             ->get();
 
             if($sconflicts->isNotEmpty()){
                 foreach ($sconflicts as  $sconflict){
-                    DB::table('indostatistiknews')
+                    DB::table('mmstatistiks')
                         ->where('id_listing', $sconflict->id)
                         ->update([
                             'sub_incident_type' => $sconflict->name

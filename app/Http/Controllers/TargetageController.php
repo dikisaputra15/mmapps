@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class WeapontypeController extends Controller
+class TargetageController extends Controller
 {
-    public function index()
+     public function index()
     {
         // ini_set('max_execution_time', 3600);
 
@@ -22,7 +22,7 @@ class WeapontypeController extends Controller
             ->select('hk673_postmeta.post_id', 'hk673_postmeta.meta_value', 'hk673_posts.post_date', 'hk673_w2gm_locations_relationships.id')
             ->whereDate(DB::raw('DATE(hk673_posts.post_date)'), $tgl_now)
             // ->whereBetween(DB::raw('DATE(hk673_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
-            ->where('hk673_postmeta.meta_key', '_content_field_115')
+            ->where('hk673_postmeta.meta_key', '_content_field_120')
             ->get();
 
         //    $no = 1;
@@ -34,30 +34,16 @@ class WeapontypeController extends Controller
         if($violences->isNotEmpty()){
             foreach($violences as $violence){
                 if($violence->meta_value == 1){
-                    $viol = 'Arson';
+                    $viol = '0 - 9';
                 }elseif($violence->meta_value == 2){
-                    $viol = 'Blunt Force Weapon';
+                    $viol = '10 - 19';
                 }elseif($violence->meta_value == 3){
-                    $viol = 'CBRN';
+                    $viol = '20 - 40';
                 }elseif($violence->meta_value == 4){
-                    $viol = 'Edged Weapons';
+                    $viol = '41 - 60';
                 }elseif($violence->meta_value == 5){
-                    $viol = 'Explosive';
+                    $viol = '61+';
                 }elseif($violence->meta_value == 6){
-                    $viol = 'Firearms';
-                }elseif($violence->meta_value == 7){
-                    $viol = 'Hazardous Chemicals';
-                }elseif($violence->meta_value == 8){
-                    $viol = 'Improvised weapons';
-                }elseif($violence->meta_value == 9){
-                    $viol = 'Multiple Weapons';
-                }elseif($violence->meta_value == 10){
-                    $viol = 'No Weapons';
-                }elseif($violence->meta_value == 11){
-                    $viol = 'Physical Violence';
-                }elseif($violence->meta_value == 12){
-                    $viol = 'Poison';
-                }elseif($violence->meta_value == 13){
                     $viol = 'Unconfirmed/Unclear';
                 }else{
                     $viol = NULL;
@@ -65,7 +51,7 @@ class WeapontypeController extends Controller
                 DB::table('mmstatistiks')
                     ->where('id_listing', $violence->id)
                     ->update([
-                        'weapon_type' => $viol
+                        'target_age' => $viol
                     ]);
             }
 

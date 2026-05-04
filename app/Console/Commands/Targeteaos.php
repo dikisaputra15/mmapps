@@ -7,39 +7,38 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 
-class Actortype extends Command
+class Targeteaos extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'task:runactortype';
+    protected $signature = 'task:runtargeteaos';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'actortype added';
-
-    /**
-     * Execute the console command.
-     */
+    protected $description = 'Target eaos added';
 
      public function __construct()
     {
         parent::__construct();
     }
 
+    /**
+     * Execute the console command.
+     */
     public function handle()
     {
-        $response = Http::get('https://id.code69.my.id/actortype');
+        $response = Http::get('https://mm.code69.my.id/targeteaos');
 
         if ($response->successful()) {
-            $this->info('Actor Type accessed successfully.');
+            $this->info('Target eaos accessed successfully.');
         } else {
-            $this->error('Failed to access Actor Type.');
+            $this->error('Failed to access target eaos.');
         }
     }
 }

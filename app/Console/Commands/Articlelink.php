@@ -34,7 +34,7 @@ class Articlelink extends Command
 
     public function handle()
     {
-         $response = Http::get('https://id.code69.my.id/articlelink');
+         $response = Http::get('https://mm.code69.my.id/articlelink');
 
         if ($response->successful()) {
             $this->info('articlelink accessed successfully.');

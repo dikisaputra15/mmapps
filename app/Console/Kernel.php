@@ -14,23 +14,27 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\Socialconflict::class,
         \App\Console\Commands\Weapon::class,
         \App\Console\Commands\Explosive::class,
+        \App\Console\Commands\Firearm::class,
         \App\Console\Commands\Actor::class,
-        \App\Console\Commands\Actortype::class,
-        \App\Console\Commands\Subactortype::class,
+        \App\Console\Commands\Businessactor::class,
+        \App\Console\Commands\Eaosactor::class,
+        \App\Console\Commands\Govactor::class,
+        \App\Console\Commands\Intelactor::class,
+        \App\Console\Commands\Milactor::class,
+        \App\Console\Commands\Actorgender::class,
+        \App\Console\Commands\Actorage::class,
         \App\Console\Commands\Target::class,
+        \App\Console\Commands\Targetbusiness::class,
+        \App\Console\Commands\Targeteaos::class,
+        \App\Console\Commands\Targetgov::class,
+        \App\Console\Commands\Targetintel::class,
+        \App\Console\Commands\Targetmil::class,
         \App\Console\Commands\Targettype::class,
+        \App\Console\Commands\Targetgender::class,
+        \App\Console\Commands\Targetage::class,
         \App\Console\Commands\Tanggal::class,
         \App\Console\Commands\Violence::class,
         \App\Console\Commands\Articlelink::class,
-        \App\Console\Commands\Business::class,
-        \App\Console\Commands\Civilian::class,
-        \App\Console\Commands\Communnity::class,
-        \App\Console\Commands\Goverment::class,
-        \App\Console\Commands\Military::class,
-        \App\Console\Commands\Police::class,
-        \App\Console\Commands\Separatist::class,
-        \App\Console\Commands\Terorist::class,
-        \App\Console\Commands\Vested::class,
         \App\Console\Commands\Time::class,
         \App\Console\Commands\Numberprotest::class,
         \App\Console\Commands\Issue::class,
@@ -50,43 +54,53 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('task:runweapon')->everyFifteenMinutes();
 
+        $schedule->command('task:runexplosive')->everyFifteenMinutes();
+
+        $schedule->command('task:runfirearm')->everyFifteenMinutes();
+
         $schedule->command('task:runactor')->everyFifteenMinutes();
 
-        $schedule->command('task:runactortype')->everyFifteenMinutes();
+        $schedule->command('task:runbusinessactor')->everyFifteenMinutes();
+
+        $schedule->command('task:runeaosactor')->everyFifteenMinutes();
+
+        $schedule->command('task:rungovactor')->everyFifteenMinutes();
+
+        $schedule->command('task:runintelactor')->everyFifteenMinutes();
+
+        $schedule->command('task:runmilactor')->everyFifteenMinutes();
+
+        $schedule->command('task:runactorgender')->everyFifteenMinutes();
+
+        $schedule->command('task:runactorage')->everyFifteenMinutes();
 
         $schedule->command('task:runtarget')->everyFifteenMinutes();
 
+        $schedule->command('task:runtargetbusiness')->everyFifteenMinutes();
+
+        $schedule->command('task:runtargeteaos')->everyFifteenMinutes();
+
+        $schedule->command('task:runtargetgov')->everyFifteenMinutes();
+
+        $schedule->command('task:runtargetintel')->everyFifteenMinutes();
+
+        $schedule->command('task:runtargetmil')->everyFifteenMinutes();
+
         $schedule->command('task:runtargettype')->everyFifteenMinutes();
 
+        $schedule->command('task:runtargetgender')->everyFifteenMinutes();
+
+        $schedule->command('task:runtargetage')->everyFifteenMinutes();
+
         $schedule->command('task:runtanggal')->everyFifteenMinutes();
-
-        $schedule->command('task:runsubactortype')->everyFifteenMinutes();
-
-        $schedule->command('task:runexplosive')->everyFifteenMinutes();
 
         $schedule->command('task:runviolence')->everyFifteenMinutes();
 
         $schedule->command('task:runarticlelink')->everyFifteenMinutes();
 
-        $schedule->command('task:runbusiness')->everyFifteenMinutes();
-
-        $schedule->command('task:runcivilian')->everyFifteenMinutes();
-
-        $schedule->command('task:runcommunity')->everyFifteenMinutes();
-
-        $schedule->command('task:rungoverment')->everyFifteenMinutes();
-
-        $schedule->command('task:runmilitary')->everyFifteenMinutes();
-
-        $schedule->command('task:runpolice')->everyFifteenMinutes();
-
-        $schedule->command('task:runseparatist')->everyFifteenMinutes();
+        $schedule->command('task:runtime')->everyFifteenMinutes();
 
         $schedule->command('task:runterorist')->everyFifteenMinutes();
-
-        $schedule->command('task:runvested')->everyFifteenMinutes();
-
-        $schedule->command('task:runtime')->everyFifteenMinutes();
 
         $schedule->command('task:runnumberprotest')->everyFifteenMinutes();
 

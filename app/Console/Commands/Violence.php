@@ -33,12 +33,12 @@ class Violence extends Command
 
     public function handle()
     {
-        $response = Http::get('https://id.code69.my.id/violence');
+        $response = Http::get('https://mm.code69.my.id/violence');
 
         if ($response->successful()) {
-            $this->info('Target Type accessed successfully.');
+            $this->info('Violence accessed successfully.');
         } else {
-            $this->error('Failed to access target type.');
+            $this->error('Failed to access violence.');
         }
     }
 }

@@ -34,7 +34,7 @@ class Actor extends Command
 
     public function handle()
     {
-        $response = Http::get('https://id.code69.my.id/actor');
+        $response = Http::get('https://mm.code69.my.id/actor');
 
         if ($response->successful()) {
             $this->info('Actor accessed successfully.');

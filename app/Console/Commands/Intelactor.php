@@ -7,39 +7,38 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 
-class Subactortype extends Command
+class Intelactor extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'task:runsubactortype';
+    protected $signature = 'task:runintelactor';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'subactortype added';
+    protected $description = 'Intel actor added';
+
+     public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
      * Execute the console command.
      */
-
-     public function __construct()
-     {
-         parent::__construct();
-     }
-
     public function handle()
     {
-        $response = Http::get('https://id.code69.my.id/subactortype');
+        $response = Http::get('https://mm.code69.my.id/intelactor');
 
         if ($response->successful()) {
-            $this->info('Actor Type accessed successfully.');
+            $this->info('Intel actor accessed successfully.');
         } else {
-            $this->error('Failed to access Actor Type.');
+            $this->error('Failed to access Intel actor.');
         }
     }
 }

@@ -3,6 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
 
 class Explosive extends Command
 {
@@ -31,7 +34,7 @@ class Explosive extends Command
 
     public function handle()
     {
-        $response = Http::get('https://id.code69.my.id/explosivetype');
+        $response = Http::get('https://mm.code69.my.id/explosivetype');
 
         if ($response->successful()) {
             $this->info('Weapon accessed successfully.');

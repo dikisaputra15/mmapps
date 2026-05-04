@@ -16,13 +16,13 @@ class ActorController extends Controller
         $tgl_now = $tgl->format('Y-m-d');
         // $tgl_coba = ['2024-02-01', '2024-02-10'];
 
-        $violences = DB::table('wp_postmeta')
-            ->join('wp_posts', 'wp_posts.ID', '=', 'wp_postmeta.post_id')
-            ->join('wp_w2gm_locations_relationships', 'wp_w2gm_locations_relationships.post_id', '=', 'wp_postmeta.post_id')
-            ->select('wp_postmeta.post_id', 'wp_postmeta.meta_value', 'wp_posts.post_date', 'wp_w2gm_locations_relationships.id')
-            ->whereDate(DB::raw('DATE(wp_posts.post_date)'), $tgl_now)
-            // ->whereBetween(DB::raw('DATE(wp_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
-            ->where('wp_postmeta.meta_key', '_content_field_152')
+        $violences = DB::table('hk673_postmeta')
+            ->join('hk673_posts', 'hk673_posts.ID', '=', 'hk673_postmeta.post_id')
+            ->join('hk673_w2gm_locations_relationships', 'hk673_w2gm_locations_relationships.post_id', '=', 'hk673_postmeta.post_id')
+            ->select('hk673_postmeta.post_id', 'hk673_postmeta.meta_value', 'hk673_posts.post_date', 'hk673_w2gm_locations_relationships.id')
+            ->whereDate(DB::raw('DATE(hk673_posts.post_date)'), $tgl_now)
+            // ->whereBetween(DB::raw('DATE(hk673_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
+            ->where('hk673_postmeta.meta_key', '_content_field_94')
             ->get();
 
         //    $no = 1;
@@ -33,38 +33,74 @@ class ActorController extends Controller
 
         if($violences->isNotEmpty()){
             foreach($violences as $violence){
-                if($violence->meta_value == 32){
-                    $viol = 'Business Entity';
-                }elseif($violence->meta_value == 27){
-                    $viol = 'Foreign Government (A)';
+                if($violence->meta_value == 5){
+                    $viol = 'Activist Group';
                 }elseif($violence->meta_value == 6){
-                    $viol = 'Terrorist Group';
-                }elseif($violence->meta_value == 3){
-                    $viol = 'Central Government (A)';
-                }elseif($violence->meta_value == 4){
-                    $viol = 'Government Security Agency';
-                }elseif($violence->meta_value == 9){
-                    $viol = 'Vested Interest/Stakeholder Group';
+                    $viol = 'Business Entity';
+                }elseif($violence->meta_value == 13){
+                    $viol = 'Central government (Junta)';
                 }elseif($violence->meta_value == 7){
-                    $viol = 'Civilian';
-                }elseif($violence->meta_value == 1){
-                    $viol = 'Local Government (A)';
-                }elseif($violence->meta_value == 20){
-                    $viol = 'Unknown/Unclaimed Responsibility';
-                }elseif($violence->meta_value == 31){
-                    $viol = 'Community Group';
-                }elseif($violence->meta_value == 2){
-                    $viol = 'Provincial Government (A)';
-                }elseif($violence->meta_value == 19){
-                    $viol = 'Other';
+                    $viol = 'Child/Youth/Student';
+                }elseif($violence->meta_value == 4){
+                    $viol = 'Civilian/Local Resident/Individual';
                 }elseif($violence->meta_value == 8){
                     $viol = 'Crime Group';
-                }elseif($violence->meta_value == 5){
+                }elseif($violence->meta_value == 9){
+                    $viol = 'EAOs';
+                }elseif($violence->meta_value == 10){
+                    $viol = 'Ethnic/Cultural Group';
+                }elseif($violence->meta_value == 11){
+                    $viol = 'Foreign Government';
+                }elseif($violence->meta_value == 12){
+                    $viol = 'Foreign National';
+                }elseif($violence->meta_value == 1){
+                    $viol = 'Government (Junta) Forces';
+                }elseif($violence->meta_value == 14){
+                    $viol = 'Hard-line/Radicalized group';
+                }elseif($violence->meta_value == 15){
+                    $viol = 'International Activist Group/Organization';
+                }elseif($violence->meta_value == 16){
+                    $viol = 'Local Community Group';
+                }elseif($violence->meta_value == 17){
+                    $viol = 'Local Criminal/Gang/Group';
+                }elseif($violence->meta_value == 18){
+                    $viol = 'Local government';
+                }elseif($violence->meta_value == 19){
+                    $viol = 'Martial Arts Group';
+                }elseif($violence->meta_value == 20){
+                    $viol = 'Mass Organization';
+                }elseif($violence->meta_value == 21){
+                    $viol = 'Motorcycle Gang';
+                }elseif($violence->meta_value == 22){
+                    $viol = 'NGO';
+                }elseif($violence->meta_value == 23){
+                    $viol = 'Organized Crime Group';
+                }elseif($violence->meta_value == 24){
+                    $viol = 'People’s Defense Force (PDFs)/Militia';
+                }elseif($violence->meta_value == 25){
+                    $viol = 'Political Party';
+                }elseif($violence->meta_value == 26){
+                    $viol = 'Political Party Supporter';
+                }elseif($violence->meta_value == 27){
+                    $viol = 'Political Party Wing Group';
+                }elseif($violence->meta_value == 28){
+                    $viol = 'Regional government';
+                }elseif($violence->meta_value == 29){
+                    $viol = 'Religious Group';
+                }elseif($violence->meta_value == 30){
                     $viol = 'Separatist Group';
+                }elseif($violence->meta_value == 31){
+                    $viol = 'Terrorist Group';
+                }elseif($violence->meta_value == 32){
+                    $viol = 'Union/Labor Group';
+                }elseif($violence->meta_value == 33){
+                    $viol = 'Vested Interest - Stakeholder';
+                }elseif($violence->meta_value == 3){
+                    $viol = 'Unconfirmed/Unclear';
                 }else{
                     $viol = NULL;
                 }
-                DB::table('indostatistiknews')
+                DB::table('mmstatistiks')
                     ->where('id_listing', $violence->id)
                     ->update([
                         'actor' => $viol

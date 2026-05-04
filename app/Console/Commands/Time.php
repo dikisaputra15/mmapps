@@ -34,7 +34,7 @@ class Time extends Command
 
     public function handle()
     {
-        $response = Http::get('https://id.code69.my.id/time');
+        $response = Http::get('https://mm.code69.my.id/time');
 
         if ($response->successful()) {
             $this->info('Time accessed successfully.');

@@ -7,21 +7,21 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 
-class Subincident extends Command
+class Actorgender extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'task:runsubincident';
+    protected $signature = 'task:runactorgender';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'subincident added';
+    protected $description = 'Actor gender added';
 
     /**
      * Execute the console command.
@@ -34,12 +34,12 @@ class Subincident extends Command
 
     public function handle()
     {
-        $response = Http::get('https://mm.code69.my.id/subincidenttype');
+        $response = Http::get('https://mm.code69.my.id/actorgender');
 
         if ($response->successful()) {
-            $this->info('Sub Incident accessed successfully.');
+            $this->info('Actor gender accessed successfully.');
         } else {
-            $this->error('Failed to access Sub Incident.');
+            $this->error('Failed to access Actor gender.');
         }
     }
 }

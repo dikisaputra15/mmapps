@@ -7,38 +7,38 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 
-class Military extends Command
+class Targetmil extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'task:runmilitary';
+    protected $signature = 'task:runtargetmil';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'military added';
+    protected $description = 'Target mil added';
 
-    /**
-     * Execute the console command.
-     */
      public function __construct()
     {
         parent::__construct();
     }
 
+    /**
+     * Execute the console command.
+     */
     public function handle()
     {
-         $response = Http::get('https://id.code69.my.id/military');
+        $response = Http::get('https://mm.code69.my.id/targetmil');
 
         if ($response->successful()) {
-            $this->info('Military accessed successfully.');
+            $this->info('Target mil accessed successfully.');
         } else {
-            $this->error('Failed to access military.');
+            $this->error('Failed to access target mil.');
         }
     }
 }

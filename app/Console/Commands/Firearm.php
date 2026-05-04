@@ -7,39 +7,39 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 
-class Subincident extends Command
+class Firearm extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'task:runsubincident';
+    protected $signature = 'task:runfirearm';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'subincident added';
+    protected $description = 'firearm added';
 
     /**
      * Execute the console command.
      */
 
-    public function __construct()
+     public function __construct()
     {
         parent::__construct();
     }
 
     public function handle()
     {
-        $response = Http::get('https://mm.code69.my.id/subincidenttype');
+        $response = Http::get('https://mm.code69.my.id/firearm');
 
         if ($response->successful()) {
-            $this->info('Sub Incident accessed successfully.');
+            $this->info('Weapon accessed successfully.');
         } else {
-            $this->error('Failed to access Sub Incident.');
+            $this->error('Failed to access weapon.');
         }
     }
 }

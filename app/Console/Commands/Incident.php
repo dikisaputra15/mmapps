@@ -34,7 +34,7 @@ class Incident extends Command
 
     public function handle()
     {
-        $response = Http::get('https://id.code69.my.id/incidenttype');
+        $response = Http::get('https://mm.code69.my.id/incidenttype');
 
         if ($response->successful()) {
             $this->info('Incident accessed successfully.');

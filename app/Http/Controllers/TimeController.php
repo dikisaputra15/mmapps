@@ -16,27 +16,27 @@ class TimeController extends Controller
         $tgl_now = $tgl->format('Y-m-d');
         // $tgl_coba = ['2024-02-01', '2024-02-10'];
 
-        $tanggals = DB::table('wp_postmeta as end_date')
-                    ->join('wp_posts', 'wp_posts.ID', '=', 'end_date.post_id')
-                    ->join('wp_w2gm_locations_relationships', 'wp_w2gm_locations_relationships.post_id', '=', 'end_date.post_id')
-                    ->leftJoin('wp_postmeta as hour', function ($join) {
+        $tanggals = DB::table('hk673_postmeta as end_date')
+                    ->join('hk673_posts', 'hk673_posts.ID', '=', 'end_date.post_id')
+                    ->join('hk673_w2gm_locations_relationships', 'hk673_w2gm_locations_relationships.post_id', '=', 'end_date.post_id')
+                    ->leftJoin('hk673_postmeta as hour', function ($join) {
                         $join->on('hour.post_id', '=', 'end_date.post_id')
-                            ->where('hour.meta_key', '_content_field_89_hour');
+                            ->where('hour.meta_key', '_content_field_11_hour');
                     })
-                    ->leftJoin('wp_postmeta as minute', function ($join) {
+                    ->leftJoin('hk673_postmeta as minute', function ($join) {
                         $join->on('minute.post_id', '=', 'end_date.post_id')
-                            ->where('minute.meta_key', '_content_field_89_minute');
+                            ->where('minute.meta_key', '_content_field_11_minute');
                     })
                     ->select(
                         'end_date.post_id',
                         'end_date.meta_value as date_end',
-                        'wp_posts.post_date',
-                        'wp_w2gm_locations_relationships.id',
+                        'hk673_posts.post_date',
+                        'hk673_w2gm_locations_relationships.id',
                         DB::raw("CONCAT(LPAD(hour.meta_value, 2, '0'), ':', LPAD(minute.meta_value, 2, '0')) as jam_menit")
                     )
-                    ->whereDate(DB::raw('DATE(wp_posts.post_date)'), $tgl_now)
-                    // ->whereBetween(DB::raw('DATE(wp_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
-                    ->where('end_date.meta_key', '_content_field_89_date_end')
+                    ->whereDate(DB::raw('DATE(hk673_posts.post_date)'), $tgl_now)
+                    // ->whereBetween(DB::raw('DATE(hk673_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
+                    ->where('end_date.meta_key', '_content_field_11_date_end')
                     ->get();
 
         if ($tanggals->isNotEmpty()) {
@@ -44,7 +44,7 @@ class TimeController extends Controller
                     // langsung ambil hasil join CONCAT jam:menit
                     $jam_menit = $tanggal->jam_menit; // contoh: "08:30"
 
-                    DB::table('indostatistiknews')
+                    DB::table('mmstatistiks')
                         ->where('id_listing', $tanggal->id)
                         ->update([
                             'time_incident' => $jam_menit // pastikan kolom ini ada di tabel

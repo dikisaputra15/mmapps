@@ -34,7 +34,7 @@ class Numberprotest extends Command
 
     public function handle()
     {
-         $response = Http::get('https://id.code69.my.id/numberprotest');
+         $response = Http::get('https://mm.code69.my.id/numberprotest');
 
         if ($response->successful()) {
             $this->info('Numberprotest accessed successfully.');

@@ -16,13 +16,13 @@ class NumberprotestController extends Controller
         $tgl_now = $tgl->format('Y-m-d');
         // $tgl_coba = ['2024-02-01', '2024-02-10'];
 
-        $violences = DB::table('wp_postmeta')
-            ->join('wp_posts', 'wp_posts.ID', '=', 'wp_postmeta.post_id')
-            ->join('wp_w2gm_locations_relationships', 'wp_w2gm_locations_relationships.post_id', '=', 'wp_postmeta.post_id')
-            ->select('wp_postmeta.post_id', 'wp_postmeta.meta_value', 'wp_posts.post_date', 'wp_w2gm_locations_relationships.id')
-            ->whereDate(DB::raw('DATE(wp_posts.post_date)'), $tgl_now)
-            // ->whereBetween(DB::raw('DATE(wp_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
-            ->where('wp_postmeta.meta_key', '_content_field_90')
+        $violences = DB::table('hk673_postmeta')
+            ->join('hk673_posts', 'hk673_posts.ID', '=', 'hk673_postmeta.post_id')
+            ->join('hk673_w2gm_locations_relationships', 'hk673_w2gm_locations_relationships.post_id', '=', 'hk673_postmeta.post_id')
+            ->select('hk673_postmeta.post_id', 'hk673_postmeta.meta_value', 'hk673_posts.post_date', 'hk673_w2gm_locations_relationships.id')
+            ->whereDate(DB::raw('DATE(hk673_posts.post_date)'), $tgl_now)
+            // ->whereBetween(DB::raw('DATE(hk673_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
+            ->where('hk673_postmeta.meta_key', '_content_field_71')
             ->get();
 
         //    $no = 1;
@@ -34,7 +34,7 @@ class NumberprotestController extends Controller
         if($violences->isNotEmpty()){
             foreach($violences as $violence){
 
-                DB::table('indostatistiknews')
+                DB::table('mmstatistiks')
                     ->where('id_listing', $violence->id)
                     ->update([
                         'number_of_protest' => $violence->meta_value
