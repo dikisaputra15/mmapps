@@ -33,7 +33,7 @@ Route::get('/milactor', [App\Http\Controllers\MilitaryactorController::class, 'i
 Route::get('/actorgender', [App\Http\Controllers\ActorgenderController::class, 'index']);
 Route::get('/actorage', [App\Http\Controllers\ActorageController::class, 'index']);
 Route::get('/target', [App\Http\Controllers\TargetController::class, 'index']);
-Route::get('/targetbusiness', [App\Http\Controllers\TargetbusinessController::class, 'index']);
+Route::get('/targetbusiness', [App\Http\Controllers\Targetbusiness::class, 'index']);
 Route::get('/targeteaos', [App\Http\Controllers\TargeteaosController::class, 'index']);
 Route::get('/targetgov', [App\Http\Controllers\TargetgovController::class, 'index']);
 Route::get('/targetintel', [App\Http\Controllers\TargetintelController::class, 'index']);
