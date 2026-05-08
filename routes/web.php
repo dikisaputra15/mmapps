@@ -43,6 +43,7 @@ Route::get('/targetgender', [App\Http\Controllers\TargetgenderController::class,
 Route::get('/targetage', [App\Http\Controllers\TargetageController::class, 'index']);
 Route::get('/tanggal', [App\Http\Controllers\TanggalController::class, 'index']);
 Route::get('/violence', [App\Http\Controllers\ViolenceController::class, 'index']);
+Route::get('/incidentdetail', [App\Http\Controllers\IncidentdetailController::class, 'index']);
 Route::get('/articlelink', [App\Http\Controllers\ArticlelinkController::class, 'index']);
 Route::get('/time', [App\Http\Controllers\TimeController::class, 'index']);
 Route::get('/numberprotest', [App\Http\Controllers\NumberprotestController::class, 'index']);

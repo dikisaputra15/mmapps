@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string('target_gender')->nullable();
             $table->string('target_age')->nullable();
             $table->string('violence')->nullable();
+            $table->string('incident_detail')->nullable();
             $table->integer('number_of_incident');
             $table->integer('number_of_injuries');
             $table->integer('number_of_fatalities');

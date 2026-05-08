@@ -34,6 +34,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\Targetage::class,
         \App\Console\Commands\Tanggal::class,
         \App\Console\Commands\Violence::class,
+        \App\Console\Commands\Incidentdetail::class,
         \App\Console\Commands\Articlelink::class,
         \App\Console\Commands\Time::class,
         \App\Console\Commands\Numberprotest::class,
@@ -95,6 +96,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('task:runtanggal')->everyFifteenMinutes();
 
         $schedule->command('task:runviolence')->everyFifteenMinutes();
+
+        $schedule->command('task:runincidentdetail')->everyFifteenMinutes();
 
         $schedule->command('task:runarticlelink')->everyFifteenMinutes();
 

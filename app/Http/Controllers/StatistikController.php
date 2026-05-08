@@ -71,6 +71,7 @@ class StatistikController extends Controller
                     'target_gender' => NULL,
                     'target_age' => NULL,
                     'violence' => NULL,
+                    'incident_detail' => NULL,
                     'number_of_incident' => $icat->number_of_incident,
                     'number_of_injuries' => $icat->number_of_injuries,
                     'number_of_fatalities' => $icat->number_of_fatalities,
