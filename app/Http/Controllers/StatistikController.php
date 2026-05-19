@@ -17,11 +17,11 @@ class StatistikController extends Controller
         $tgl_now = $tgl->format('Y-m-d');
         // $tgl_coba = ['2024-02-01', '2024-02-10'];
         $icats = DB::table('hk673_terms')
-            ->join('hk673_term_taxonomy', 'hk673_terms.term_id', '=', 'hk673_term_taxonomy.term_id')
-            ->join('hk673_term_relationships', 'hk673_term_taxonomy.term_taxonomy_id', '=', 'hk673_term_relationships.term_taxonomy_id')
-            ->join('hk673_posts', 'hk673_posts.ID', '=', 'hk673_term_relationships.object_id')
-            ->join('hk673_w2gm_locations_relationships', 'hk673_posts.ID', '=', 'hk673_w2gm_locations_relationships.post_id')
-            ->join('hk673_lokasi', 'hk673_w2gm_locations_relationships.location_id', '=', 'hk673_lokasi.lokasi_id')
+            ->leftJoin('hk673_term_taxonomy', 'hk673_terms.term_id', '=', 'hk673_term_taxonomy.term_id')
+            ->leftJoin('hk673_term_relationships', 'hk673_term_taxonomy.term_taxonomy_id', '=', 'hk673_term_relationships.term_taxonomy_id')
+            ->leftJoin('hk673_posts', 'hk673_posts.ID', '=', 'hk673_term_relationships.object_id')
+            ->leftJoin('hk673_w2gm_locations_relationships', 'hk673_posts.ID', '=', 'hk673_w2gm_locations_relationships.post_id')
+            ->leftJoin('hk673_lokasi', 'hk673_w2gm_locations_relationships.location_id', '=', 'hk673_lokasi.lokasi_id')
             ->select('hk673_posts.ID', 'hk673_posts.post_title', 'hk673_w2gm_locations_relationships.id', 'hk673_w2gm_locations_relationships.address_line_1', 'hk673_lokasi.lokasi_name', 'hk673_lokasi.district', 'hk673_lokasi.province_name', 'hk673_w2gm_locations_relationships.map_coords_1', 'hk673_w2gm_locations_relationships.map_coords_2', 'hk673_terms.name AS incident_category', 'hk673_w2gm_locations_relationships.number_of_incident', 'hk673_w2gm_locations_relationships.number_of_injuries', 'hk673_w2gm_locations_relationships.number_of_fatalities', 'hk673_w2gm_locations_relationships.additional_info', 'hk673_posts.post_date', 'hk673_terms.name')
             ->where('hk673_posts.post_status', 'publish')
             ->whereDate(DB::raw('DATE(hk673_posts.post_date)'), $tgl_now)
