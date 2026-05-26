@@ -54,7 +54,7 @@ class TargetController extends Controller
                 }elseif($violence->meta_value == 10){
                     $viol = 'Foreign National';
                 }elseif($violence->meta_value == 11){
-                    $viol = 'Government (Junta) Forces';
+                    $viol = 'Government (Military Regime)';
                 }elseif($violence->meta_value == 12){
                     $viol = 'Hard-line/Radicalized group';
                 }elseif($violence->meta_value == 13){
