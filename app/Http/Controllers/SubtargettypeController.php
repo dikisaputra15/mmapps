@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class TargettypeController extends Controller
+class SubtargettypeController extends Controller
 {
     public function index()
     {
@@ -22,7 +22,7 @@ class TargettypeController extends Controller
             ->select('hk673_postmeta.post_id', 'hk673_postmeta.meta_value', 'hk673_posts.post_date', 'hk673_w2gm_locations_relationships.id')
             ->whereDate(DB::raw('DATE(hk673_posts.post_date)'), $tgl_now)
             // ->whereBetween(DB::raw('DATE(hk673_posts.post_date)'), [$tgl_coba[0], $tgl_coba[1]])
-            ->where('hk673_postmeta.meta_key', '_content_field_116')
+            ->where('hk673_postmeta.meta_key', '_content_field_131')
             ->get();
 
         //    $no = 1;
@@ -34,22 +34,38 @@ class TargettypeController extends Controller
         if($violences->isNotEmpty()){
             foreach($violences as $violence){
                 if($violence->meta_value == 1){
-                    $viol = 'Facilities';
+                    $viol = 'Bases';
                 }elseif($violence->meta_value == 2){
-                    $viol = 'Personnel';
-                }elseif($violence->meta_value == 5){
-                    $viol = 'Personnel/Equip';
+                    $viol = 'Building Infrastructure (Power Plant, Airport, Port, etc)';
                 }elseif($violence->meta_value == 3){
-                    $viol = 'Vehicles';
+                    $viol = 'Checkpoints';
                 }elseif($violence->meta_value == 4){
-                    $viol = 'Unconfirmed/Unclear';
+                    $viol = 'Commercial (Business, Industrial, Manufacturing, etc)';
+                }elseif($violence->meta_value == 5){
+                    $viol = 'Factory/Warehouse';
+                }elseif($violence->meta_value == 6){
+                    $viol = 'Government Office';
+                }elseif($violence->meta_value == 7){
+                    $viol = 'Housing';
+                }elseif($violence->meta_value == 8){
+                    $viol = 'HQ';
+                }elseif($violence->meta_value == 9){
+                    $viol = 'Outpost';
+                }elseif($violence->meta_value == 10){
+                    $viol = 'Police Stations';
+                }elseif($violence->meta_value == 11){
+                    $viol = 'Public (School, Medical, Utilities, etc)';
+                }elseif($violence->meta_value == 12){
+                    $viol = 'Settlement/Residential Area/Village';
+                }elseif($violence->meta_value == 13){
+                    $viol = 'Transportation Infrastructure (Bridge, Road, Highway, etc)';
                 }else{
                     $viol = NULL;
                 }
                 DB::table('mmstatistiks')
                     ->where('id_listing', $violence->id)
                     ->update([
-                        'target_type' => $viol
+                        'sub_target_type' => $viol
                     ]);
             }
 

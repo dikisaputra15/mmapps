@@ -39,6 +39,7 @@ Route::get('/targetgov', [App\Http\Controllers\TargetgovController::class, 'inde
 Route::get('/targetintel', [App\Http\Controllers\TargetintelController::class, 'index']);
 Route::get('/targetmil', [App\Http\Controllers\TargetmilController::class, 'index']);
 Route::get('/targettype', [App\Http\Controllers\TargettypeController::class, 'index']);
+Route::get('/subtargettype', [App\Http\Controllers\SubtargettypeController::class, 'index']);
 Route::get('/targetgender', [App\Http\Controllers\TargetgenderController::class, 'index']);
 Route::get('/targetage', [App\Http\Controllers\TargetageController::class, 'index']);
 Route::get('/tanggal', [App\Http\Controllers\TanggalController::class, 'index']);

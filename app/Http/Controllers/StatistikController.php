@@ -69,6 +69,7 @@ class StatistikController extends Controller
                     'sub_target' => NULL,
                     'sub_target_intel_mil' => NULL,
                     'target_type' => NULL,
+                    'sub_target_type' => NULL,
                     'target_gender' => NULL,
                     'target_age' => NULL,
                     'violence' => NULL,

@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('sub_target')->nullable();
             $table->string('sub_target_intel_mil')->nullable();
             $table->string('target_type')->nullable();
+            $table->string('sub_target_type')->nullable();
             $table->string('target_gender')->nullable();
             $table->string('target_age')->nullable();
             $table->string('violence')->nullable();
