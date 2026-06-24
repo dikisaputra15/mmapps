@@ -65,6 +65,8 @@ class ExplosivetypeController extends Controller
                     $viol = 'Naval Bombardment';
                 }elseif($violence->meta_value == 16){
                     $viol = 'Paraglider/Gyrocopter strike';
+                }elseif($violence->meta_value == 17){
+                    $viol = 'Unconfirmed/Unclear';
                 }else{
                     $viol = NULL;
                 }

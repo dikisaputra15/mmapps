@@ -41,6 +41,8 @@ class FirearmController extends Controller
                     $viol = 'Military Grade Firearms';
                 }elseif($violence->meta_value == 4){
                     $viol = 'Service Firearms (Police, corrective services, border protection, customs, etc.)';
+                }elseif($violence->meta_value == 5){
+                    $viol = 'Unconfirmed/Unclear';
                 }else{
                     $viol = NULL;
                 }
