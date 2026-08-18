@@ -39,6 +39,8 @@ class GovermentactorController extends Controller
                     $viol = 'Military';
                 }elseif($violence->meta_value == 3){
                     $viol = 'Militias/Paramilitary Forces';
+                }elseif($violence->meta_value == 12){
+                    $viol = 'Officials/Civil Servants';
                 }elseif($violence->meta_value == 2){
                     $viol = 'Police';
                 }else{

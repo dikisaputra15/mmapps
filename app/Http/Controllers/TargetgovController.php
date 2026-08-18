@@ -39,6 +39,8 @@ class TargetgovController extends Controller
                     $viol = 'Military';
                 }elseif($violence->meta_value == 9){
                     $viol = 'Militias/Paramilitary Forces';
+                }elseif($violence->meta_value == 29){
+                    $viol = 'Officials/Civil Servants';
                 }elseif($violence->meta_value == 6){
                     $viol = 'Police';
                 }else{
